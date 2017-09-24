@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include "memory.h"
 
 int8_t * my_memset(uint8_t * src, size_t length, uint8_t value)
@@ -54,4 +55,48 @@ uint8_t * my_memcpy(uint8_t * src, uint8_t * dst, size_t length)
     dst++;
   }
   return (dst - length);
+}
+
+
+uint8_t * my_reverse(uint8_t * src, size_t length)
+{
+  uint8_t *ptrHead = src;    
+  uint8_t *ptrTail = src + (length-1); 
+
+  uint8_t holdArray[length];
+  uint8_t *holdPtr = holdArray;
+  
+  uint8_t intermediate = 0;     
+
+  while(!((ptrHead == ptrTail) || (ptrHead == (ptrTail -1))))
+  {
+    intermediate = *ptrHead;
+    *ptrHead = *ptrTail;
+    *ptrTail = intermediate;
+    ptrHead++;
+    ptrTail--;
+    if(ptrHead == (ptrTail-1))
+    {
+      intermediate = *ptrHead;
+      *ptrHead = *ptrTail;
+      *ptrTail = intermediate; 
+    }
+  }
+  return src;
+}
+
+int32_t * reserve_words(size_t length)
+{
+  int * reservePtr;
+  reservePtr = (int *) malloc((sizeof(int)*length));
+  if(reservePtr == 0)
+  {
+    return NULL;
+  }
+  return reservePtr;
+}
+
+void free_words(int32_t * src)
+{
+  free(src);
 }
