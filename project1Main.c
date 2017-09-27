@@ -31,14 +31,22 @@ int main(){
   //printf("returnValue: %p\n",int32returnValue);
   //print_memory(testArray2, length);
 
-  uint32_t testArray[] = {0x90ab426c};
+  /* uint32_t testArray[] = {0x90ab426c};
   uint32_t length = 1;
   print_memory((uint8_t*) testArray, length*4);
   //printf("0x%02x\n",*testArray);
   //  big_to_little32(testArray, length);
   little_to_big32(testArray, length);
   print_memory((uint8_t*) testArray, length*4);
-  // printf("0x%02x\n",*testArray);
+  // printf("0x%02x\n",*testArray);*/
+
+  int32_t testValue = 12456783;
+  int32_t baseValue = 10;
+  uint8_t *valuePtr;
+  valuePtr = (uint8_t*) &testValue;
+
+  my_itoa(testValue, valuePtr, baseValue);
+  print_memory(valuePtr,1);
   
   return 0;
 }

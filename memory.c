@@ -63,8 +63,8 @@ uint8_t * my_reverse(uint8_t * src, size_t length)
   uint8_t *ptrHead = src;    
   uint8_t *ptrTail = src + (length-1); 
 
-  uint8_t holdArray[length];
-  uint8_t *holdPtr = holdArray;
+  //uint8_t holdArray[length];
+  // uint8_t *holdPtr = holdArray;
   
   uint8_t intermediate = 0;     
 
