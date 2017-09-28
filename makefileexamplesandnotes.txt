@@ -1,0 +1,83 @@
+#makefile for project 1 - ECEN5813
+
+OBJS: project.o main.o debug.o conversion.o memory.o
+.SUFFIXES: .i .asm .o
+
+ifeq($(PLATFORM), BBB)
+	CC: arm-linux-gnueabi-gcc
+	CFLAGS:
+	CPPFLAGS:
+	LDFLAGS:
+	PLATFORM:
+	SOURCES:
+	INCLUDES: 
+
+ifeq($(PLATFORM), KL25Z)
+	CC: arm-none-eabi-gcc
+	CFLAGS:
+	CPPFLAGS:
+	LDFLAGS:
+	PLATFORM:
+	SOURCES:
+	INCLUDES: 
+
+ifeq($(PLATFORM), HOST)
+	CC: cc
+	CFLAGS: -Wall -c
+	CPPFLAGS:
+	LDFLAGS:
+	PLATFORM:
+	SOURCES:
+	INCLUDES: 
+endif
+
+.i:
+
+.asm:
+
+.o:
+
+compile-all:
+
+build:
+
+clean:
+	-rm *.o
+
+
+
+# $@ is the name of the file to be made
+# $? is the names o the changed dependents
+# $< name of hte related file that caused the action
+# $* the prefix shared by target and dependent file
+
+#EXAMPLES!!!!#
+hello: main.o factorial.o hello.o
+	$(CC) main.o factorial.o hello.o -o hello
+
+main.o: main.cpp functions.h
+	$(CC) -c main.cpp
+
+factorial.o: factorial.cpp functions.h
+	$(CC) -c factorial.cpp
+
+hello.o: hello.cpp functions.h
+	$(CC) -c hello.cpp
+
+# Define required macros here
+SHELL = /bin/sh
+
+OBJS =  main.o factorial.o hello.o
+CFLAG = -Wall -g
+CC = gcc
+INCLUDE =
+LIBS = -lm
+
+hello:${OBJ}
+   ${CC} ${CFLAGS} ${INCLUDES} -o $@ ${OBJS} ${LIBS}
+
+clean:
+   -rm -f *.o core *.core
+
+.cpp.o:
+   ${CC} ${CFLAGS} ${INCLUDES} -c $<
