@@ -87,8 +87,8 @@ uint8_t * my_reverse(uint8_t * src, size_t length)
 
 int32_t * reserve_words(size_t length)
 {
-  int * reservePtr;
-  reservePtr = (int *) malloc((sizeof(int)*length));
+  int32_t * reservePtr;
+  reservePtr = (int32_t *) malloc((sizeof(size_t)*length));
   if(reservePtr == 0)
   {
     return NULL;
