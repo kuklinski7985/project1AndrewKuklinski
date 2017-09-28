@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "conversion.h"
-
+#include "memory.h"
 
 int8_t little_to_big32(uint32_t * data, uint32_t length)
 {
@@ -58,12 +58,33 @@ int8_t big_to_little32(uint32_t * data, uint32_t length)
 
 uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base)
 {
-  char convertedData = 0;
-  convertedData = data;
-  //printf("convertedData: %c\n",convertedData);
+  	int rem;
+	int length=0;
 
-  *ptr = convertedData;
-  return 0;
+	while(data!=0)
+	{
+		rem =data%base;
+		data = data/base;
+
+		if(rem>9)
+		{
+			*ptr = (uint8_t) rem+55;
+		}
+
+		else
+		{
+			*ptr=rem+48;
+		}
+
+		ptr++;
+		length++;
+	}
+	
+	ptr = ptr-length;
+
+	my_reverse(ptr, length); 
+
+	return length;
 }
 
 //int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base);
