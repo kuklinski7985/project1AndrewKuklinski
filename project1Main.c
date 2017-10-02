@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdint.h>
 #include "debug.h"
 #include "memory.h"
 #include "conversion.h"
@@ -44,10 +46,17 @@ int main(){
   int32_t baseValue = 10;
   uint8_t *valuePtr;
   uint8_t length=0;
+  uint8_t testString[4] = {'1','2','3','4'};
   valuePtr = (uint8_t*) &testValue;
-
-  length =  my_itoa(testValue, valuePtr, baseValue);
-  print_memory(valuePtr,length);
-  
+// printf("entered main");
+ // length =  my_itoa(testValue, valuePtr, baseValue);
+ // print_memory(valuePtr,length);
+ 
+  int32_t num=0;
+  num = baseValue^2;
+  printf("%d\n",num); 
+  int32_t final_value;
+  final_value = my_atoi(testString,4,baseValue);
+//  printf("  Final Decimal number: %d\n",final_value); 
   return 0;
 }

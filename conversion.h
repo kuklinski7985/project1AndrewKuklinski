@@ -1,3 +1,12 @@
+/**
+* @file conversion.h
+* @brief This file is used to declare the functions used to conver data from 
+* one form to another.
+* @author Andrew Kuklinski and Mason Darveaux
+* @date 9/30/2017
+**/
+
+
 #include <stdio.h>
 #include <stdint.h>
 
