@@ -1,4 +1,4 @@
-SOURCES = conversion.o debug.o memory.o project1Main.o
+SOURCES = conversion.o debug.o memory.o main.o
 #INCLUDES = 
 CC = gcc
 DEBUG = -g -Wall -Werror -std=c99
