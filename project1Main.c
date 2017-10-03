@@ -15,6 +15,7 @@ int main(){
   //int8_t * int8returnValue = NULL;
   //uint8_t * uint8returnValue = NULL;
  // int32_t * int32returnValue = NULL;
+  //int32_t * int32returnValue = NULL;
  
   
   //print_memory(testArray2, length);
@@ -31,6 +32,8 @@ int main(){
   // uint8returnValue = my_memcpy(testArray2,destArray,6);
  //  int32returnValue = reserve_words(6);
  // printf("returnValue: %p\n",int32returnValue);
+  //int32returnValue = reserve_words(6);
+  //printf("returnValue: %p\n",int32returnValue);
   //print_memory(testArray2, length);
 
   /* uint32_t testArray[] = {0x90ab426c};
@@ -43,11 +46,15 @@ int main(){
   // printf("0x%02x\n",*testArray);*/
 
   int32_t testValue = 1234;
+  //int test = 7/10;
+  //printf("%d\n",test);
+  /*int32_t testValue = 12456783;
   int32_t baseValue = 10;
   uint8_t *valuePtr;
   uint8_t length=0;
   uint8_t testString[4] = {'1','2','3','4'};
   valuePtr = (uint8_t*) &testValue;
+
 // printf("entered main");
  // length =  my_itoa(testValue, valuePtr, baseValue);
  // print_memory(valuePtr,length);
@@ -58,5 +65,9 @@ int main(){
   int32_t final_value;
   final_value = my_atoi(testString,4,baseValue);
 //  printf("  Final Decimal number: %d\n",final_value); 
+  
+  my_itoa(testValue, valuePtr, baseValue);
+  print_memory(valuePtr,1);
+  */
   return 0;
 }
