@@ -1,21 +1,44 @@
-CC=gcc
+SOURCES = conversion.o debug.o memory.o
+#INCLUDES = 
+CC = gcc
+DEBUG = -g
+CPPFLAGS = -E
+#LDFLAGS =
+#PLATFORM = 
+CFLAGS = -Wall -Werror -std=c99 $(DEBUG)
+LFLAGS = -Wall -Werror -std=c99 $(DEBUG)
 
-CFLAGS=-c -Wall
+#project1Main : $(SOURCES)
+#	$(CC) $(CFLAGS) $(SOURCES) -o project1Main
 
+.PHONY: compile-all
+compile-all:  $(SOURCES)
+	$(CC) $(CFLAGS) $(SOURCES) -o a.out
 
-all: project1Main
+%.o:%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-project1Main: project1Main.o memory.o debug.o conversion.o
-	$(CC) $(OBJS) -o project1Main
+%.i:%.c
+	$(CC) $(CFLAGS) $(CPPFLAGS)  $< -o $@
 
-project1Main.o: project1Main.c
-	$(CC) $(CFLAGS) project1Main.c
+%.asm:%.c
+	$(CC) $(CFLAGS) -S $< -o $@
 
-conversion.o: conversion.c
-	$(CC) $(CFLAGS) conversion.c
+#conversion.o : conversion.c conversion.h
+#	$(CC) $(CFLAGS) conversion.c
 
-debug.o: debug.c
-	$(CC) $(CFLAGS) debug.c
+#debug.o : debug.c debug.h
+#	$(CC) $(CFLAGS) debug.c
 
-memory.o: memory.c
-	$(CC) $(CFLAGS) memory.c
+#memory.o : memory.c memory.h
+#	$(CC) $(CFLAGS) memory.c
+
+#build: $(SOURCES) project1Main.c
+#	$(CC) $(LFLAGS) project1Main.c
+
+.PHONY: build
+build:
+
+.PHONY: clean
+clean:
+	-rm *.o *.map *.out *.asm *.i
