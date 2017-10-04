@@ -1,4 +1,4 @@
-SOURCES = conversion.c debug.c memory.c main.c
+SOURCES = conversion.c debug.c memory.c main.c project1.c
 OBJS = $(SOURCES:.c=.o)
 IMP = $(SOURCES:.c=.i)
 INCLUDES = 
@@ -38,9 +38,9 @@ compile-all: $(OBJS)
 
 .PHONY: build
 build: $(OBJS)
-	$(CC) $(DEBUG) $(OBJS) $(LDFLAGS) -o project1
+	$(CC) $(DEBUG) -Wl,-Map,project1.map $(OBJS) $(LDFLAGS) -o project1.elf
 
 
 .PHONY: clean
 clean:
-	-rm *.o *.map *.out *.asm *.i project1
+	-rm *.o *.map *.d project1.elf

@@ -321,7 +321,7 @@ int8_t test_reverse()
   return ret;
 }
 
-void course1(void) 
+void project1(void) 
 {
   uint8_t i;
   int8_t failed = 0;
