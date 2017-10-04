@@ -120,11 +120,11 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base)
 	int8_t dig=0;
 	int32_t number=0;
 	int32_t mult =0;
-//	printf("entered atoi");
+
 	for(i=digits-1; i>=0;i--)
 	{
 		dig = *(ptr+i);
-//		printf("%c",dig);
+
 		if(65<= dig && dig <= 70)
 		{
 		dig =dig-55;
@@ -134,13 +134,13 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base)
 		{
 		dig = dig-48;
 		}
-		printf("%d \n",dig);
+		
 		mult = (int32_t) pow((double) base, (double) j);
 		number+=dig*mult;
-		printf("%d \n", number);
+		
 		j++;
 	}
-	printf("%d\n", number);
+	
 	return number;
 }
 

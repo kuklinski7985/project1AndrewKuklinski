@@ -1,19 +1,32 @@
-SOURCES = conversion.o debug.o memory.o
+SOURCES = conversion.c debug.c memory.c project1Main.c
+OBJS =conversion.o debug.o memory.o project1Main.o
 #INCLUDES = 
-CC = gcc
+
+ifeq ($(PLATFORM),HOST)
+	CC = gcc
+endif
+
+ifeq ($(PLATFORM),BBB)
+	CC = arm-linux-gnueabi-gcc
+endif
+
+ifeq ($(PLATFORM),KL25Z)
+	CC = arm-none-eabi-gcc
+endif
+
 DEBUG = -g
 CPPFLAGS = -E
-#LDFLAGS =
+LDFLAGS = -lm
 #PLATFORM = 
 CFLAGS = -Wall -Werror -std=c99 $(DEBUG)
-LFLAGS = -Wall -Werror -std=c99 $(DEBUG)
+LFLAGS = -lm
 
 #project1Main : $(SOURCES)
 #	$(CC) $(CFLAGS) $(SOURCES) -o project1Main
 
 .PHONY: compile-all
-compile-all:  $(SOURCES)
-	$(CC) $(CFLAGS) $(SOURCES) -o a.out
+compile-all:  $(OBJS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -24,20 +37,9 @@ compile-all:  $(SOURCES)
 %.asm:%.c
 	$(CC) $(CFLAGS) -S $< -o $@
 
-#conversion.o : conversion.c conversion.h
-#	$(CC) $(CFLAGS) conversion.c
-
-#debug.o : debug.c debug.h
-#	$(CC) $(CFLAGS) debug.c
-
-#memory.o : memory.c memory.h
-#	$(CC) $(CFLAGS) memory.c
-
-#build: $(SOURCES) project1Main.c
-#	$(CC) $(LFLAGS) project1Main.c
-
 .PHONY: build
-build:
+build: $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o project1
 
 .PHONY: clean
 clean:
