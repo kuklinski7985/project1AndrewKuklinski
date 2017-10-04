@@ -134,13 +134,13 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base)
 		{
 		dig = dig-48;
 		}
-		printf("%d \n",dig);
+		//	printf("%d \n",dig);
 		mult = (int32_t) pow((double) base, (double) j);
 		number+=dig*mult;
-		printf("%d \n", number);
+		//printf("%d \n", number);
 		j++;
 	}
-	printf("%d\n", number);
+	//	printf("%d\n", number);
 	return number;
 }
 
