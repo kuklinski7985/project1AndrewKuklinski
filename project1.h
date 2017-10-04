@@ -30,6 +30,7 @@
 #define TEST_ERROR          (1)
 #define TEST_NO_ERROR       (0)
 #define TESTCOUNT           (8)
+#define PROJECT1 
 
 /**
  * @brief function to run project1 materials
@@ -126,5 +127,6 @@ int8_t test_memset();
  * @return void
  */
 int8_t test_reverse();
+
 
 #endif /* __PROJECT1_H__ */

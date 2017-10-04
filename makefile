@@ -23,6 +23,7 @@ ifeq ($(PLATFORM),KL25Z)
 endif
 
 
+
 %.o:%.c
 	$(CC) $(DEBUG) $(CFLAGS) $^ -o $@
 
@@ -30,7 +31,7 @@ endif
 	$(CC) $(DEBUG) $(CPPFLAGS) $^ -o $@
 
 %.asm:%.c
-	$(CC) $(DEBUG) $(LFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) -S $< -o $@
 
 .PHONY: compile-all
 compile-all: $(OBJS)

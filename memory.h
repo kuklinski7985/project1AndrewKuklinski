@@ -40,6 +40,6 @@ int32_t * reserve_words(size_t length);
 
 /*Takes a pointer to an allocated section of dynamic memory 
   and frees that section*/
-void free_words(int32_t * src);
+void free_words(uint32_t * src);
 
 #endif
