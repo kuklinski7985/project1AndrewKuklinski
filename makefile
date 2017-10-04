@@ -5,8 +5,7 @@ INCLUDES =
 CC = gcc
 DEBUG = -g -Wall -Werror -std=c99
 CPPFLAGS = -E
-LDFLAGS = -lm
-PLATFORM = 
+LDFLAGS = -lm -Wl,-Map,project1.map -MMD
 CFLAGS = -c
 LFLAGS = -S
 
@@ -39,8 +38,8 @@ compile-all: $(OBJS)
 
 .PHONY: build
 build: $(OBJS)
-	$(CC) $(DEBUG) -Wl,-Map,project1.map $(OBJS) $(LDFLAGS) -o project1.elf
-
+	$(CC) $(DEBUG) $(OBJS) $(LDFLAGS) -o project1.elf
+	$(CC) $(DEBUG) $(SOURCES) $(LDFLAGS)
 
 .PHONY: clean
 clean:
