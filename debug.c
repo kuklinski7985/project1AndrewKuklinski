@@ -19,9 +19,14 @@ void print_memory(uint8_t * start, uint32_t length)
   //and continuing for the number of bytes specified by length
   for(int i=0; i < length; i++)
   {
+    #ifdef VERBOSE
     printf("Address: %p | Hex Value: 0x%02x \n",start, *start);
+    #endif
     start++;
   }
+  #ifdef VERBOSE
   printf("\n");
+  #endif
+  
 }
 

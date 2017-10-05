@@ -8,7 +8,6 @@
 #include "debug.h"
 #include <math.h>
 
-
 int main(){
   
  #ifdef PROJECT1
