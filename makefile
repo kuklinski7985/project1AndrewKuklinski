@@ -3,10 +3,9 @@ OBJS = $(SOURCES:.c=.o)
 IMP = $(SOURCES:.c=.i)
 INCLUDES = 
 CC = gcc
-DEBUG = -g -Wall -Werror -std=c99
-CPPFLAGS = -E
-LDFLAGS = -lm
-
+DEBUG = -g -Wall -Werror -std=c99 -O0
+CPPFLAGS = -
+LDFLAGS = -lm -Wl,-Map,project1.map -MMD
 CFLAGS = -c
 LFLAGS = -S
 
@@ -16,6 +15,7 @@ endif
 
 ifeq ($(PLTFORM),BBB)
 	CC = arm-linux-gnueabi-gcc
+
 endif
 
 ifeq ($(PLATFORM),KL25Z)
@@ -27,9 +27,6 @@ ifeq ($(PLATFORM),KL25Z)
 		 -mfpu=fpv4-sp-d16 \
 		 --specs=nosys.specs
 endif
-
-
-
 
 %.o:%.c
 	$(CC) $(DEBUG) $(CFLAGS) $^ -o $@
@@ -48,7 +45,11 @@ compile-all: $(OBJS)
 build: $(OBJS)
 	$(CC) $(DEBUG) $(OBJS) $(PLATFORM_FLAGS) $(LDFLAGS) -o project1
 
+build: $(OBJS) 
+	$(CC) $(DEBUG) $(OBJS) $(PLATFORM_FLAGS) $(LDFLAGS) -o project1.elf
+	$(CC) $(SOURCES) $(PLATFORM_FLAGS) $(LDFLAGS) -o project1.elf
+	size project1.elf
 
 .PHONY: clean
 clean:
-	-rm *.o *.map *.out *.asm *.i project1
+	-rm *.o *.map *.d project1.elf a.out

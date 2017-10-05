@@ -9,13 +9,11 @@
 #include <math.h>
 
 
-
 int main(){
-
-#ifdef PROJECT1
+  
+ #ifdef PROJECT1
  project1();
-#endif
-
+ #endif
   return 0;
 }
 
