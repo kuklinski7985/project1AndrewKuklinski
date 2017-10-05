@@ -331,6 +331,8 @@ void project1(void)
   int8_t failed = 0;
   int8_t results[TESTCOUNT];
 
+ printf("inside project1\n");
+
   results[0] = test_data1();
   results[1] = test_data2();
   results[2] = test_memmove1();

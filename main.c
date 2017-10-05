@@ -13,7 +13,7 @@
 int main(){
 
 #ifdef PROJECT1
-void project1();
+ project1();
 #endif
 
   return 0;

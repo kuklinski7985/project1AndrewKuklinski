@@ -6,7 +6,7 @@ CC = gcc
 DEBUG = -g -Wall -Werror -std=c99
 CPPFLAGS = -E
 LDFLAGS = -lm
-PLATFORM = 
+
 CFLAGS = -c
 LFLAGS = -S
 
@@ -19,8 +19,15 @@ ifeq ($(PLTFORM),BBB)
 endif
 
 ifeq ($(PLATFORM),KL25Z)
-	CC = arm-none-eabi-gcc
+	CC = arm-none-eabi-gcc 
+	PLATFORM_FLAGS:= -march=armv6 \
+		 -mtune=cortex-m0plus\
+		 -mthumb \
+		 -mfloat-abi=softfp \
+		 -mfpu=fpv4-sp-d16 \
+		 --specs=nosys.specs
 endif
+
 
 
 
@@ -39,7 +46,7 @@ compile-all: $(OBJS)
 
 .PHONY: build
 build: $(OBJS)
-	$(CC) $(DEBUG) $(OBJS) $(LDFLAGS) -o project1
+	$(CC) $(DEBUG) $(OBJS) $(PLATFORM_FLAGS) $(LDFLAGS) -o project1
 
 
 .PHONY: clean
