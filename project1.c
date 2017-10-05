@@ -31,8 +31,9 @@ int8_t test_data1() {
   uint32_t digits;
   int32_t value;
   uint32_t BASE_16 =16;
-
+  #ifdef VERBOSE
   printf("\ntest_data1();\n");
+  #endif
   ptr = (uint8_t*) reserve_words( DATA_SET_SIZE_W );
 
   if (! ptr )
@@ -62,8 +63,9 @@ int8_t test_data2() {
   int32_t value;
   uint32_t BASE_10 =10;
   
-
+  #ifdef VERBOSE
   printf("test_data2();\n");
+  #endif
   ptr = (uint8_t*) reserve_words( DATA_SET_SIZE_W );
 
   if (! ptr )
@@ -92,8 +94,9 @@ int8_t test_memmove1() {
   uint8_t * set;
   uint8_t * ptra;
   uint8_t * ptrb;
-
+  #ifdef VERBOSE
   printf("test_memmove1() - NO OVERLAP\n");
+  #endif
   set = (uint8_t*) reserve_words( MEM_SET_SIZE_W );
 
   if (! set ) 
@@ -132,8 +135,9 @@ int8_t test_memmove2() {
   uint8_t * set;
   uint8_t * ptra;
   uint8_t * ptrb;
-
+  #ifdef VERBOSE
   printf("test_memmove2() -OVERLAP END OF SRC BEGINNING OF DST\n");
+  #endif
   set = (uint8_t*) reserve_words(MEM_SET_SIZE_W);
 
   if (! set )
@@ -170,8 +174,9 @@ int8_t test_memmove3() {
   uint8_t * set;
   uint8_t * ptra;
   uint8_t * ptrb;
-
+  #ifdef VERBOSE
   printf("test_memove3() - OVERLAP END OF DEST BEGINNING OF SRC\n");
+  #endif
   set = (uint8_t*)reserve_words( MEM_SET_SIZE_W);
 
   if (! set ) 
@@ -211,8 +216,9 @@ int8_t test_memcpy() {
   uint8_t * set;
   uint8_t * ptra;
   uint8_t * ptrb;
-
+  #ifdef VERBOSE
   printf("test_memcpy()\n");
+  #endif
   set = (uint8_t*) reserve_words(MEM_SET_SIZE_W);
 
   if (! set ) 
@@ -250,8 +256,9 @@ int8_t test_memset()
   uint8_t * set;
   uint8_t * ptra;
   uint8_t * ptrb;
-
+  #ifdef VERBOSE
   printf("test_memset()\n");
+  #endif
   set = (uint8_t*)reserve_words(MEM_SET_SIZE_W);
   if (! set )
   {
@@ -299,8 +306,9 @@ int8_t test_reverse()
                                  0x72, 0x75, 0x74, 0x78, 0x21, 0x4D, 0x20, 0x40,
                                  0x20, 0x24, 0x7C, 0x20, 0x24, 0x69, 0x68, 0x54
                                };
-
+  #ifdef VERBOSE
   printf("test_reverse()\n");
+  #endif
   copy = (uint8_t*)reserve_words(MEM_SET_SIZE_W);
   if (! copy )
   {
@@ -346,10 +354,11 @@ void project1(void)
   {
     failed += results[i];
   }
-
+  #ifdef VERBOSE
   printf("--------------------------------\n");
   printf("Test Results:\n");
   printf("  PASSED: %d / %d\n", (TESTCOUNT - failed), TESTCOUNT);
   printf("  FAILED: %d / %d\n", failed, TESTCOUNT);
   printf("--------------------------------\n");
+  #endif
 }

@@ -4,8 +4,8 @@ IMP = $(SOURCES:.c=.i)
 INCLUDES = 
 CC = gcc
 DEBUG = -g -Wall -Werror -std=c99 -O0
-CPPFLAGS = -DPROJECT1 
-LDFLAGS = -lm -Wl,-Map,project1.map -MMD
+CPPFLAGS = -DPROJECT1 -DVERBOSE
+LDFLAGS = -lm -Wl,-Map,project1.map
 CFLAGS = -c
 LFLAGS = -S
 
@@ -16,7 +16,6 @@ endif
 
 ifeq ($(PLATFORM),BBB)
 	CC = arm-linux-gnueabihf-gcc
-	
 
 endif
 
@@ -33,19 +32,24 @@ endif
 %.o:%.c
 	$(CC) $(DEBUG) $(CPPFLAGS) $(CFLAGS) -MMD $^ -o $@
 
+
 %.i:%.c
 	$(CC) $(DEBUG) -E $(CPPFLAGS) $^ -o $@
 
 %.asm:%.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -S $< -o $@
+
+	$(CC) $(DEBUG) $(CPPFLAGS) $(CFLAGS) -S $< -o $@
+
 
 .PHONY: compile-all
 compile-all: $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@ 
+	$(CC) $(CFLAGS) $(LDFLAGS)  -o $@
 
-build: $(OBJS) 
-	$(CC) $(DEBUG) $(OBJS) $(PLATFORM_FLAGS)  $(LDFLAGS) -o project1.elf
-	size project1.elf
+.PHONY: build
+build: $(OBJS)
+	$(CC) $(DEBUG) $(OBJS) $(PLATFORM_FLAGS) $(LDFLAGS) -o project1.elf
+	size project1.elf $(OBJS)
+
 
 .PHONY: clean
 clean:
